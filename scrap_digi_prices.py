@@ -56,5 +56,10 @@ dolar = pd.to_numeric(dolar_vendedor[0].text.strip("$").replace(",","."))
 #convertir a pesos
 df["Precio_Pesos"] = df.Precio_Usd * dolar
 
+#dejo nombres únicos
+df.drop_duplicates(["Carta"],inplace=True)
+#ordeno de la A - Z
+df = df.sort_values(by=["Carta"],ascending=True)
+
 #grabo el excel
 df.to_excel("Precios_Digimon.xlsx")
